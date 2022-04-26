@@ -161,7 +161,7 @@ action:
     message: "{{ notification_message }}"
     data:
       tag: "{{ notification_title }}"
-      timeout: {{ notification_timeout }}
+      timeout: "{{ notification_timeout }}"
       channel: "{{ notificaion_channel }}"
       importance : {{ notification_importance }}
       vibrationPattern: "{{ notification_vibration_pattern }}"
