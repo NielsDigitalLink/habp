@@ -35,15 +35,26 @@ blueprint:
       description: The message content of the notification
       default: ""
       
+      notification_timeout:
+      name: Notification timeout (Optional)
+      description: How long a notification will be shown on a users device before being removed/dismissed automatically
+      default: 600
+      selector:
+        number:
+          min: 0
+          max: 86400
+          unit_of_measurement: "seconds"
+          mode: slider
+    
     notification_channel:
       name: Notification channel (Optional)
       description: Notification channels allows users to separate their notifications easily (i.e. alarm vs laundry) so they can customize aspects like what type of sound is made and a lot of other device specific features. 
-      default: ""
+      default: "General"
       
     notification_importance:
       name: Notification importance (Optional)
       description: Possible values for this property are high, low, max, min and default.
-      default: "default"
+      default: default
       select:
         options:
           - high
@@ -164,7 +175,7 @@ action:
       tag: "{{ notification_title }}"
       channel: "{{ notificaion_channel }}"
       timeout : 600
-      importance : high
+      importance : {{ notification_importance }}
       vibrationPattern: "{{ notification_vibration_pattern }}"
       persistent: "{{ persistent_notification }}"
       actions: >
