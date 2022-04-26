@@ -33,7 +33,11 @@ blueprint:
     notification_timeout:
       name: Notification timeout (Optional)
       description: How long a notification will be shown on a users device before being removed/dismissed automatically
-      default: "600"
+      default: {}
+      selector:
+        number:
+		  min: 0
+		  max: 86400
 
     notification_message:
       name: Notification message (Optional)
@@ -49,6 +53,13 @@ blueprint:
       name: Notification importance (Optional)
       description: Possible values for this property are high, low, max, min and default.
       default: "default"
+	  select:
+        options:
+          - high
+          - low
+          - max
+		  - min
+		  - default
       
     notification_vibration_pattern:
       name: Notification vibration pattern (Optional)
@@ -161,7 +172,7 @@ action:
     message: "{{ notification_message }}"
     data:
       tag: "{{ notification_title }}"
-      timeout: "{{ notification_timeout }}"
+      timeout: {{ notification_timeout }}
       channel: "{{ notificaion_channel }}"
       importance : {{ notification_importance }}
       vibrationPattern: "{{ notification_vibration_pattern }}"
