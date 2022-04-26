@@ -164,7 +164,7 @@ action:
       tag: "{{ notification_title }}"
       channel: "{{ notificaion_channel }}"
       timeout : 600
-      importance : {{ notification_importance }}
+      importance : high
       vibrationPattern: "{{ notification_vibration_pattern }}"
       persistent: "{{ persistent_notification }}"
       actions: >
