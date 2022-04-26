@@ -41,7 +41,7 @@ blueprint:
 
     notification_message:
       name: Notification message (Optional)
-      description: The message of the notification
+      description: The message content of the notification
       default: ""
       
     notification_channel:
