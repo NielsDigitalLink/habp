@@ -36,8 +36,8 @@ blueprint:
       default: {}
       selector:
         number:
-		  min: 0
-		  max: 86400
+          min: 0
+          max: 86400
 
     notification_message:
       name: Notification message (Optional)
