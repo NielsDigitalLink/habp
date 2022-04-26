@@ -30,17 +30,6 @@ blueprint:
       description: The title of the notification
       default: ""
 
-    notification_timeout:
-      name: Notification timeout (Optional)
-      description: How long a notification will be shown on a users device before being removed/dismissed automatically
-      default: 600
-      selector:
-        number:
-          min: 0
-          max: 86400
-          unit_of_measurement: "seconds"
-          mode: slider
-
     notification_message:
       name: Notification message (Optional)
       description: The message content of the notification
@@ -62,7 +51,7 @@ blueprint:
           - max
           - min
           - default
-    
+      
     notification_vibration_pattern:
       name: Notification vibration pattern (Optional)
       description: The pattern specification is "off time, on time, off time, on time, off time" etc.
@@ -141,7 +130,6 @@ variables:
   notification_title: !input notification_title
   notification_message: !input notification_message
   persistent_notification: !input persistent_notification
-  notification_timeout: !input notification_timeout
   notification_importance: !input notification_importance
   notification_channel: !input notification_channel
   notification_vibration_pattern: !input notification_vibration_pattern
@@ -174,8 +162,8 @@ action:
     message: "{{ notification_message }}"
     data:
       tag: "{{ notification_title }}"
-      timeout: {{ notification_timeout }}
       channel: "{{ notificaion_channel }}"
+      timeout : 600
       importance : {{ notification_importance }}
       vibrationPattern: "{{ notification_vibration_pattern }}"
       persistent: "{{ persistent_notification }}"
