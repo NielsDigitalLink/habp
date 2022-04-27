@@ -54,14 +54,13 @@ blueprint:
     notification_importance:
       name: Notification importance (Optional)
       description: Possible values for this property are high, low, max, min and default.
-      default: "default"
       select:
         options:
+          - default
           - high
           - low
           - max
           - min
-          - default
       
     notification_vibration_pattern:
       name: Notification vibration pattern (Optional)
