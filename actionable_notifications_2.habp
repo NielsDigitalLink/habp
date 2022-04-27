@@ -54,7 +54,7 @@ blueprint:
     notification_importance:
       name: Notification importance (Optional)
       description: Possible values for this property are high, low, max, min and default.
-      default: default
+      default: "default"
       select:
         options:
           - high
