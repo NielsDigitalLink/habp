@@ -141,10 +141,6 @@ variables:
   notification_title: !input notification_title
   notification_message: !input notification_message
   persistent_notification: !input persistent_notification
-  notification_timeout: !input notification_timeout
-  notification_importance: !input notification_importance
-  notification_channel: !input notification_channel
-  notification_vibration_pattern: !input notification_vibration_pattern
   action_1_title: !input action_1_title
   action_1_uri: !input action_1_uri
   first_action: !input first_action
@@ -174,10 +170,10 @@ action:
     message: "{{ notification_message }}"
     data:
       tag: "{{ notification_title }}"
-      channel: "{{ notificaion_channel }}"
-      timeout : "{{ notification_timeout }}"
-      importance : "{{ notification_importance }}"
-      vibrationPattern: "{{ notification_vibration_pattern }}"
+      channel: !input notification_channel
+      timeout : !input notification_timeout
+      importance : !input notification_importance
+      vibrationPattern: !input notification_vibration_pattern
       persistent: "{{ persistent_notification }}"
       actions: >
         {% set titles = [action_1_title, action_2_title, action_3_title] %}
