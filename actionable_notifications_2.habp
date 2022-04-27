@@ -28,13 +28,15 @@ blueprint:
     notification_title:
       name: Notification title (Optional)
       description: The title of the notification
-      default: ""
-
+      default: ''
+      selector:
+        text:
     notification_message:
       name: Notification message (Optional)
       description: The message content of the notification
-      default: ""
-      
+      default: ''
+      selector:
+        text:
     notification_timeout:
       name: Notification timeout (Optional)
       description: How long a notification will be shown on a users device before being removed/dismissed automatically
@@ -45,28 +47,42 @@ blueprint:
           max: 86400
           unit_of_measurement: "seconds"
           mode: slider
-    
     notification_channel:
-      name: Notification channel (Optional)
-      description: Notification channels allows users to separate their notifications easily (i.e. alarm vs laundry) so they can customize aspects like what type of sound is made and a lot of other device specific features. 
-      default: "General"
-      
-    notification_importance:
-      name: Notification importance (Optional)
-      description: Possible values for this property are high, low, max, min and default.
-      select:
-        options:
-          - default
-          - high
-          - low
-          - max
-          - min
-      
+      name: (Optional) (Android only) Notification channel
+      description: >-
+        Android notification channel. Allows to group notifications to
+        then apply custom settings for sound, vibration, etc. Leave blank if you do
+        not want to use this feature.
+      default: ''
+      selector:
+        text:
+    notification_channel_importance:
+      name: (Optional) (Android only) Notification Channel importance
+      description: Android notification channel importance. Allows to define different priority levels for your notifications.
+      default: default
+      selector:
+        select:
+          options:
+            - default
+            - min
+            - low
+            - high
+            - max
     notification_vibration_pattern:
       name: Notification vibration pattern (Optional)
       description: The pattern specification is "off time, on time, off time, on time, off time" etc.
-      default: ""
-    
+      default: ''
+      selector:
+        text:
+    notification_group:
+      name: (Optional) Notification group
+      description: >-
+        Notification group for the notifications sent with this automation.
+        Use this to group notifications in the notification tray. Leave blank if you
+        do not want to use this feature.
+      default: ''
+      selector:
+        text:
     persistent_notification:
       name: Create persistent notification?
       description: Persistent notifications cannot be dimissed by swiping away
@@ -168,10 +184,11 @@ action:
     title: "{{ notification_title }}"
     message: "{{ notification_message }}"
     data:
-      tag: "{{ notification_title }}"
+      tag: '{{ notification_title }}'
+      group: !input notification_group
       channel: !input notification_channel
+      importance : !input notification_channel_importance
       timeout : !input notification_timeout
-      importance : !input notification_importance
       vibrationPattern: !input notification_vibration_pattern
       persistent: "{{ persistent_notification }}"
       actions: >
